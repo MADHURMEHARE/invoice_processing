@@ -7,16 +7,16 @@ import getSingleUserCustomer from "../controllers/customers/getSingleUserCustome
 import updateCustomerInfo from "../controllers/customers/updateCustomerInfo.js";
 import checkAuth from "../middleware/checkAuthMiddleware.js";
 
-const router = express.Router();
+const Customer = express.Router();
 
 // create a new customer at /api/v1/customer/create
-router.route("/create").post(checkAuth, createCustomer);
+Customer.route("/create").post(checkAuth, createCustomer);
 
 // get all of a users customers at /api/v1/customer/all
-router.route("/all").get(checkAuth, getAllUserCustomers);
+Customer.route("/all").get(checkAuth, getAllUserCustomers);
 
 // get, update and delete a customer
-router
+Customer
 	.route("/:id")
 	.get(checkAuth, getSingleUserCustomer)
 	.patch(checkAuth, updateCustomerInfo)

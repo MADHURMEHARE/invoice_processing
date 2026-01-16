@@ -197,11 +197,6 @@ The backend provides several API endpoints for managing invoices and customers. 
 - **Payments:**
   - `POST /api/payments`: Record a new payment.
 
-## Contact
-Made with ❤️ by Edison www.Edisonwhale.com
-
-Have any questions? Email me! edisonapply@gmail.com
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

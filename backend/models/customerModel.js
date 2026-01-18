@@ -29,8 +29,8 @@ const customerSchema = new Schema(
 		},
 		accountNo: String,
 		vatTinNo: {
-			type: Number,
-			default: 0,
+		 type: String,
+  trim: true,
 		},
 		address: String,
 		city: String,

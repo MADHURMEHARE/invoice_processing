@@ -68,7 +68,7 @@ const CustomersPage = () => {
 
 	const [deleteCustomer] = useDeleteCustomerMutation();
 
-	const rows = data?.myCustomers;
+	const rows = data?.myCustomers ?? [];
 
 	// state to handle opening and closing of modal
 	const [open, setOpen] = useState(false);
@@ -146,7 +146,7 @@ const CustomersPage = () => {
 
 			{isLoading ? (
 				<Spinner />
-			) : !data?.myCustomers.length ? (
+			)  : rows.length === 0 ? (
 				<CustomerSVG />
 			) : (
 				<TableContainer

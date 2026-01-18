@@ -9,33 +9,34 @@ import { systemLogs } from "../../utils/Logger.js";
 
 const loginUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
+console.log("LOGIN RESPONSE SENT");
 
-	if (!email || !password) {
-		res.status(400);
-		throw new Error("Please provide an email and password");
-	}
+	// if (!email || !password) {
+	// 	res.status(400);
+	// 	throw new Error("Please provide an email and password");
+	// }
 
 	const existingUser = await User.findOne({ email }).select("+password");
 
-	if (!existingUser || !(await existingUser.comparePassword(password))) {
-		res.status(401);
-		systemLogs.error("incorrect email or password");
-		throw new Error("Incorrect email or password");
-	}
+	// if (!existingUser || !(await existingUser.comparePassword(password))) {
+	// 	res.status(401);
+	// 	systemLogs.error("incorrect email or password");
+	// 	throw new Error("Incorrect email or password");
+	// }
 
-	if (!existingUser.isEmailVerified) {
-		res.status(400);
-		throw new Error(
-			"You are not verified. Check your email, a verification email link was sent when you registered"
-		);
-	}
+	// if (!existingUser.isEmailVerified) {
+	// 	res.status(400);
+	// 	throw new Error(
+	// 		"You are not verified. Check your email, a verification email link was sent when you registered"
+	// 	);
+	// }
 
-	if (!existingUser.active) {
-		res.status(400);
-		throw new Error(
-			"You have been deactivated by the admin and login is impossible. Contact us for enquiries"
-		);
-	}
+	// if (!existingUser.active) {
+	// 	res.status(400);
+	// 	throw new Error(
+	// 		"You have been deactivated by the admin and login is impossible. Contact us for enquiries"
+	// 	);
+	// }
 
 	if (existingUser && (await existingUser.comparePassword(password))) {
 		const accessToken = jwt.sign(

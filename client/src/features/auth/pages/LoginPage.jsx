@@ -11,7 +11,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import GoogleLogin from "../../../components/GoogleLogin";
 import StyledDivider from "../../../components/StyledDivider";
-import AuthWrapper from "../forms/AuthWrapper";
+import AuthWrapper from "../forms/AuthWrapper"
 import LoginForm from "../forms/LoginForm";
 
 const LoginPage = () => {
@@ -106,7 +106,7 @@ const LoginPage = () => {
 								<Link
 									variant="h6"
 									component={RouterLink}
-									to="/register"
+									to="/customers"
 									sx={{ textDecoration: "none" }}
 								>
 									Sign Up Here

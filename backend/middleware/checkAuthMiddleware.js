@@ -3,30 +3,45 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
 const checkAuth = asyncHandler(async (req, res, next) => {
-	let jwt_token;
+  const authHeader =
+    req.headers.authorization || req.headers.Authorization;
 
-	// Bearer sdfasdfasdfasdfsd
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({
+      success: false,
+      message: "Authorization token missing",
+    });
+  }
 
-	const authHeader = req.headers.authorization || req.headers.Authorization;
+  const token = authHeader.split(" ")[1];
 
-	if (!authHeader?.startsWith("Bearer")) return res.sendStatus(401);
+  let decoded;
+  try {
+    decoded = jwt.verify(
+      token,
+      process.env.JWT_ACCESS_SECRET_KEY
+    );
+  } catch (err) {
+    return res.status(403).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
+  }
 
-	if (authHeader && authHeader.startsWith("Bearer")) {
-		jwt_token = authHeader.split(" ")[1];
+  const user = await User.findById(decoded.id).select("-password");
 
-		jwt.verify(
-			jwt_token,
-			process.env.JWT_ACCESS_SECRET_KEY,
-			async (err, decoded) => {
-				if (err) return res.sendStatus(403);
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: "User not found",
+    });
+  }
 
-				const userId = decoded.id;
-				req.user = await User.findById(userId).select("-password");
-				req.roles = decoded.roles;
-				next();
-			}
-		);
-	}
+  // ✅ THIS IS WHAT YOUR CONTROLLERS NEED
+  req.user = user;
+  req.roles = decoded.roles;
+
+  next();
 });
 
 export default checkAuth;

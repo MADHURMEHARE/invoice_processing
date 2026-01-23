@@ -21,7 +21,8 @@ import customerRoutes from "./routes/customerRoutes.js";
 /* =======================
    LOAD ENV
 ======================= */
-dotenv.config({ path: path.resolve("backend/.env") });
+dotenv.config();
+
 
 /* =======================
    FIX __dirname (ESM)
@@ -99,7 +100,7 @@ const startServer = async () => {
        LISTEN
     ======================= */
     const PORT = process.env.PORT || 1997;
-
+console.log("MONGO_URI =", process.env.MONGO_URI);
     app.listen(PORT, "0.0.0.0", () => {
       console.log(
         `${chalk.green.bold("✔")} Server running in ${chalk.yellow.bold(

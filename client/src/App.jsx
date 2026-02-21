@@ -61,12 +61,12 @@ const App = () => {
 						<Route path="profile" element={<ProfilePage />} />
 						<Route
 							path="edit-profile"
-							element={<EditProfileForm />}
+							// element={<EditProfileForm />}
 						/>
 						<Route path="customers" element={<CustomersPage />} />
 						<Route
 							path="create-customer"
-							element={<CustomerCreateForm />}
+							// element={<CustomerCreateForm />}
 						/>
 						<Route
 							path="single-customer/:custId"

@@ -38,6 +38,7 @@ const ProfileInfo = ({ user }) => {
 	const { isAdmin } = useAuthUser();
 	const navigate = useNavigate();
 
+
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -66,7 +67,7 @@ const ProfileInfo = ({ user }) => {
 			toast.success(message);
 		}
 	}, [isSuccess, data]);
-
+ if (!user) return null;
 	return (
 		<Box sx={{ flexShrink: 0, ml: 0.75 }}>
 			<ButtonBase
@@ -104,8 +105,8 @@ const ProfileInfo = ({ user }) => {
 						sx={{ p: 0.5 }}
 					>
 						<Avatar sx={{ bgcolor: deepOrange[700] }}>
-							{user.username.charAt(0).toUpperCase()}
-						</Avatar>
+  {(user?.username || "U")[0].toUpperCase()}
+</Avatar>
 						<Typography variant="h6">{user.username}</Typography>
 					</Stack>
 				)}
@@ -210,16 +211,9 @@ const ProfileInfo = ({ user }) => {
 												alignItems="center"
 												sx={{ p: 0.5 }}
 											>
-												<Avatar
-													sx={{
-														bgcolor:
-															deepOrange[700],
-													}}
-												>
-													{user.username
-														.charAt(0)
-														.toUpperCase()}
-												</Avatar>
+												<Avatar sx={{ bgcolor: deepOrange[700] }}>
+  {(user?.username || "U")[0].toUpperCase()}
+</Avatar>
 												<Stack>
 													<Typography variant="h6">
 														{user.firstName}{" "}

@@ -5,7 +5,7 @@ const StyledBox = styled(Box)({
 	marginTop: "20px",
 	marginLeft: "auto",
 	marginRight: "auto",
-	borderRadius: "10px",
+	borderRadius: "30px",
 	padding: "20px",
 	border: "1px dashed #5a5a5a",
 	borderWidth: "2px",

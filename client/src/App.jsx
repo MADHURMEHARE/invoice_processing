@@ -66,7 +66,7 @@ const App = () => {
 						<Route path="customers" element={<CustomersPage />} />
 						<Route
 							path="create-customer"
-							// element={<CustomerCreateForm />}
+							element={<CustomerCreateForm />}
 						/>
 						<Route
 							path="single-customer/:custId"

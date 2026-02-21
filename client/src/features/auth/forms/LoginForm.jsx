@@ -72,6 +72,7 @@ const LoginForm = () => {
 				})}
 				onSubmit={async (values, { setStatus, setSubmitting }) => {
 					try {
+						console.log("Form Submitted", values);
 						const getUserCredentials = await loginUser(
 							values
 						).unwrap();

@@ -7,7 +7,7 @@ const AuthWrapper = ({ children }) => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
-				height: "115vh",
+				height: "116vh",
 			}}
 		>
 			{children}
